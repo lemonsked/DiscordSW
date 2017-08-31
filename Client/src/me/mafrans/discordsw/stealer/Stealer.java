@@ -51,7 +51,7 @@ public class Stealer
            }
            return data;
         }
-        catch(SQLException | ClassNotFoundException | UnsupportedEncodingException | IOException ex)
+        catch(SQLException | ClassNotFoundException | IOException ex)
         {
             ex.printStackTrace();
             return new ArrayList<Data>();
