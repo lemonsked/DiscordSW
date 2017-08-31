@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jna-4.4.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../CPS/lib/jna-4.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../CPS/lib/jna-platform-4.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../CPS/lib/sqlite-jdbc-3.20.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
