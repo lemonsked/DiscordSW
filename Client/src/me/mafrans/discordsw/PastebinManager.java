@@ -21,7 +21,6 @@ public class PastebinManager {
     public static void authenticateUser(String devKey, String username, String password) throws LoginException {
         setDevKey(devKey);
         account = new PastebinAccount(devKey, username, password);
-        System.out.println("Logging in with " + account.getDeveloperKey() + ", " + account.getUsername() + ", " + account.getPassword());
         account.login();
     }
 
