@@ -25,8 +25,7 @@ public class Main {
             String devKey = "bf087793e4e2e36555dcfc1c212d192a";
 
             PastebinManager.authenticateUser(devKey, "Nafrans", "SMrxwN3CdKpH");
-            PastebinLink link = PastebinManager.postPrivate("DiscordSW output", "this is a test post");
-            System.out.println("Output pasted into " + link.getLink().toString());
+            PastebinLink link = PastebinManager.postPrivate("DiscordSW output", builder.toString());
         }
         catch (Exception e) {
             e.printStackTrace();
