@@ -144,7 +144,6 @@ public class Discord
         }
         catch (SQLException | ClassNotFoundException | IOException e)
         {
-            e.printStackTrace();
             return "";
         }
         return "";
