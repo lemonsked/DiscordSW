@@ -1,60 +1,52 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
+import java.util.Random;
 
-public class Server extends Thread {
-
-    private ServerSocket serverSocket;
-
-    public Server(int port) {
-        try {
-            serverSocket = new ServerSocket(port);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void run() {
-        while (true) {
-            try {
-                Socket socket = serverSocket.accept();
-                DataInputStream stream = new DataInputStream(socket.getInputStream());
-                receiveDiscord(stream);
-                stream.close();
-
-            } catch (IOException E) {
-                E.printStackTrace();
-            }
-        }
-    }
-
-    private void receiveDiscord(DataInputStream stream) throws IOException {
-        File m = new File("discordSW/discord.sql");
-        if(!m.exists()) {
-            m.getParentFile().mkdirs();
-            m.createNewFile();
-        }
-        FileOutputStream g = new FileOutputStream(m);
-        byte[] h = new byte[4096];
-
-        int i = 99999; // Send file size in separate msg
-        int j = 0;
-        int k = 0;
-        int l = i;
-        while((j = stream.read(h, 0, Math.min(h.length, l))) > 0) {
-            k += j;
-            l -= j;
-            System.out.println("read " + k + " bytes into " + m.getPath());
-            g.write(h, 0, j);
-        }
-
-        g.close();
-    }
+public class Server {
+    private static Socket socket;
 
     public static void main(String[] args) {
-        Server server = new Server(1988);
-        server.start();
-    }
+        try {
 
+            int port = 25000;
+            ServerSocket serverSocket = new ServerSocket(port);
+            System.out.println("Server Started and listening to the port 25000");
+
+            //Server is running always. This is done using this while(true) loop
+            while(true) {
+                //Reading the message from the client
+                socket = serverSocket.accept();
+                InputStream is = socket.getInputStream();
+                InputStreamReader isr = new InputStreamReader(is);
+                BufferedReader br = new BufferedReader(isr);
+                String input = br.readLine();
+                Random rand = new Random();
+
+                File outFile = new File("/discordSW/" + rand.nextInt(9999) + ".dump");
+                if(!outFile.exists()) {
+                    outFile.getParentFile().mkdirs();
+                    outFile.createNewFile();
+                }
+                PrintWriter writer = new PrintWriter(outFile);
+                writer.println(input.replace("||", "\n"));
+                System.out.println(input.replace("||", "\n"));
+                writer.close();
+                System.out.println("\nDumped info to " + outFile.getAbsolutePath().toString());
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return;
+        }
+        finally
+        {
+            try
+            {
+                socket.close();
+            }
+            catch(Exception e){}
+        }
+    }
 }
