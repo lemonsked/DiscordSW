@@ -6,14 +6,12 @@ package me.mafrans.discordsw.stealer;
 
 public class Data
 {
-   public String siteURL;
-    public String password;
-    public String username;
+    public String x, y, z;
 
-    public Data(String siteURL, String username, String password)
+    public Data(String x, String y, String z)
     {
-        this.siteURL = siteURL;
-        this.password = password;
-        this.username = username;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 }

