@@ -1,8 +1,3 @@
-package me.mafrans.discordsw;
-
-import me.mafrans.discordsw.stealer.A;
-import me.mafrans.discordsw.stealer.B;
-
 import java.io.*;
 import java.net.Socket;
 import java.util.List;

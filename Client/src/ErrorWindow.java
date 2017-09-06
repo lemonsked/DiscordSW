@@ -1,5 +1,3 @@
-package me.mafrans.discordsw;
-
 import javax.swing.*;
 import java.awt.event.*;
 

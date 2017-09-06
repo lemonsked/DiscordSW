@@ -1,5 +1,3 @@
-package me.mafrans.discordsw.stealer;
-
 /**
  * Created by Lemon on 8/26/2017.
  */

